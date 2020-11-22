@@ -36,10 +36,25 @@ addBtn.addEventListener("click", function (evt) {
   elList.innerHTML = '';
 
   for (var activity of activities) {
+    var del = document.createElement('button');
+    del.type = 'submit';
+    del.textContent = "done";
+    del.classList.add('btn', 'btn-success', 'd-flex', 'ml-auto');
     var resultList = document.createElement('li');
     resultList.textContent = activity;
-    resultList.classList.add('h5', 'text-light');
-    elList.appendChild(resultList);
-  };
+    resultList.classList.add('h5', 'p-2', 'list-styled', 'text-light', 'd-flex', 'align-items-center');
 
+    resultList.appendChild(del);
+    elList.appendChild(resultList);
+
+    if (isImportant.checked) {
+      resultList.classList.add('bg-warning');
+    }
+
+
+    del.addEventListener('click', function () {
+      elList.remove(this);
+    })
+  };
 });
+
